@@ -222,6 +222,7 @@ public class Store
 		// Say Hi
 		this.displayGreeting();
 
+		// Is there food in the store?
 		if ( this.mFoods.isEmpty() )
 		{
 			System.out.println( "Affären har ingen mat till salu för tillfället." );
@@ -245,7 +246,7 @@ public class Store
 				lPlayerChoiceInt = Game.askForValidNumber( "Vad vill du köpa?", 0, this.mFoods.size() - 1 );
 				FoodBase lChosenFood = this.mFoods.get( lPlayerChoiceInt );
 
-				lPlayerChoiceInt = Game.askForValidNumber( pPlayer.getName() + ", hur mycket foder vill du köpa?", 0, (int)lChosenFood.getQuantity() );
+				lPlayerChoiceInt = Game.askForValidNumber( pPlayer.getName() + ", hur mycket foder vill du köpa (ange i kg)?", 0, (int)lChosenFood.getQuantity() );
 
 				FoodBase lNewFood = lChosenFood.createNewWithQuantity( lPlayerChoiceInt );
 

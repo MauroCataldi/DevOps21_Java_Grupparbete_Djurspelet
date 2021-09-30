@@ -45,7 +45,8 @@ public class Player
 
 
 	/**
-	 * lets you choose how many of received animals to purchase
+	 * Makes the actual movement of an animal to this player's list of awned animals
+	 * Reduces the credits balance of this player by the cost of the animal
 	 *
 	 * @param pAnimal animal to purchase
 	 */
@@ -95,6 +96,7 @@ public class Player
 	/**
 	* Receives food from store
 	* Checks if there's enough credits, cancels the purchase if not
+	* Reduces the credits balance of this player by the cost of the food purchased
 	* Adds the food quantity to existing object, creates new if it does not exist
 	*
 	* @param pFood food object to purchase of
@@ -234,13 +236,12 @@ public class Player
 		if ( !this.mFoods.isEmpty() )
 		{
 			// The following for loop is used to get largest string length of every property in the list, used for formatting
-			int lNumLength = 0, lNameLength = 0, lPriceLength = 0, lQuantityLength = 0;
+			int lNumLength = 0, lNameLength = 0, lQuantityLength = 0;
 			for ( int i = 0; i < this.mFoods.size(); i++ )
 			{
 				FoodBase f = this.mFoods.get( i );
 				if ( Integer.toString( i ).length() > lNumLength ) lNumLength = Integer.toString( i ).length();
 				if ( f.getName().length() > lNameLength ) lNameLength = f.getName().length();
-				if ( f.getPriceStr().length() > lPriceLength ) lPriceLength = f.getPriceStr().length();
 				if ( f.getQuantityStr().length() > lQuantityLength ) lQuantityLength = f.getQuantityStr().length();
 			}
 
@@ -248,7 +249,7 @@ public class Player
 			for ( int i = 0; i < this.mFoods.size(); i++ )
 			{
 				FoodBase f = this.mFoods.get( i );
-				String lStr = String.format( "%" + lNumLength + "d.   namn: %-" + lNameLength + "s   pris: %" + lPriceLength + "s kr/kg   mängd: %" + lQuantityLength + "s kg", i, f.getName(), f.getPriceStr(), f.getQuantityStr() );
+				String lStr = String.format( "%" + lNumLength + "d.   namn: %-" + lNameLength + "s   mängd: %" + lQuantityLength + "s kg", i, f.getName(), f.getQuantityStr() );
 				System.out.println( lStr );
 			}
 		} else
@@ -305,7 +306,7 @@ public class Player
 
 	/**
 	*
-	* @return Thre balance in credits the player is holding
+	* @return The balance in credits the player is holding
 	*/
 	public int getCredits()
 	{
@@ -401,6 +402,8 @@ public class Player
 					System.out.println( getName() + ", du har inga djur som du kan para " + lChosenAnimal.getKindStr() + "(" + lChosenAnimal.getName() + ") med." );
 			} while ( !lPlayerDoneFlag );
 		}
+		else
+			System.out.println( getName() + ", du äger inga djur." );
 	}
 
 
