@@ -1,13 +1,9 @@
 package devops21_java_djurspelet;
 
-
-import java.util.Random;
 import java.util.ArrayList;
 
 public abstract class AnimalBase // Enforce creation of subclasses
 {
-	//Random rand = new Random(); What is this?
-
 	protected static final int ATSTART_HEALTH = 100;
 
 	private String mName;

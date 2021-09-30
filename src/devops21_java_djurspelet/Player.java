@@ -348,6 +348,7 @@ public class Player
 	 */
 	public void printCredits()
 	{
+		System.out.println();
 		System.out.println( this.mName + " har " + this.mCredits + " Credit(s)" );
 	}
 
