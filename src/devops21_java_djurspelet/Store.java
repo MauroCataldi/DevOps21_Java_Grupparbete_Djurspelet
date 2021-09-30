@@ -267,8 +267,9 @@ public class Store
 					pPlayer.buyFood( lNewFood );
 				}
 
-				// Show what foods the player owns
+				// Show what the player owns
 				pPlayer.printFoodOwned();
+				pPlayer.printCredits();
 
 				// Ask if the player wants to buy more food
 				if ( Game.askForValidChar( pPlayer.getName() + ", vill du köpa mer djurmat?", "JN" ).equalsIgnoreCase( "n" ) )
