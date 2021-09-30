@@ -288,16 +288,14 @@ public class Player
 				FoodBase f = this.mFoods.get( i );
 				if ( Integer.toString( i ).length() > lNumLength ) lNumLength = Integer.toString( i ).length();
 				if ( f.getName().length() > lNameLength ) lNameLength = f.getName().length();
-				if ( Integer.toString( f.getPrice() ).length() > lPriceLength )
-					lPriceLength = Integer.toString( f.getPrice() ).length();
-				if ( Integer.toString( f.getQuantity() ).length() > lQuantityLength )
-					lQuantityLength = Integer.toString( f.getQuantity() ).length();
+				if ( f.getPriceStr().length() > lPriceLength ) lPriceLength = f.getPriceStr().length();
+				if ( f.getQuantityStr().length() > lQuantityLength ) lQuantityLength = f.getQuantityStr().length();
 			}
 
 			for ( int i = 0; i < this.mFoods.size(); i++ )
 			{
 				FoodBase f = this.mFoods.get( i );
-				String lStr = String.format( "%" + lNumLength + "d.   namn: %-" + lNameLength + "s   pris: %" + lPriceLength + "d kr/kg   mängd: %" + lQuantityLength + "d kg", i, f.getName(), f.getPrice(), f.getQuantity() );
+				String lStr = String.format( "%" + lNumLength + "d.   namn: %-" + lNameLength + "s   pris: %" + lPriceLength + "s kr/kg   mängd: %" + lQuantityLength + "s kg", i, f.getName(), f.getPriceStr(), f.getQuantityStr() );
 				System.out.println( lStr );
 			}
 		} else
@@ -326,17 +324,15 @@ public class Player
 				FoodBase f = pWhichFoodlList.get( i );
 				if ( Integer.toString( i ).length() > lNumLength ) lNumLength = Integer.toString( i ).length();
 				if ( f.getName().length() > lNameLength ) lNameLength = f.getName().length();
-				if ( Integer.toString( f.getPrice() ).length() > lPriceLength )
-					lPriceLength = Integer.toString( f.getPrice() ).length();
-				if ( Integer.toString( f.getQuantity() ).length() > lQuantityLength )
-					lQuantityLength = Integer.toString( f.getQuantity() ).length();
+				if ( f.getPriceStr().length() > lPriceLength ) lPriceLength = f.getPriceStr().length();
+				if ( f.getQuantityStr().length() > lQuantityLength ) lQuantityLength = f.getQuantityStr().length();
 			}
 
 			// Write to screen the list
 			for ( int i = 0; i < pWhichFoodlList.size(); i++ )
 			{
 				FoodBase f = pWhichFoodlList.get( i );
-				String lStr = String.format( "%" + lNumLength + "d.   namn: %-" + lNameLength + "s   pris: %" + lPriceLength + "d kr/kg   mängd: %" + lQuantityLength + "d kg", i, f.getName(), f.getPrice(), f.getQuantity() );
+				String lStr = String.format( "%" + lNumLength + "d.   namn: %-" + lNameLength + "s   pris: %" + lPriceLength + "s kr/kg   mängd: %" + lQuantityLength + "s kg", i, f.getName(), f.getPriceStr(), f.getQuantityStr() );
 				System.out.println( lStr );
 			}
 		}
@@ -512,10 +508,10 @@ public class Player
 					System.out.println( getName() + ", vill mata sin " + lChosenAnimal.getKindStr() + "(" + lChosenAnimal.getName() + ")" + " med " + lChosenFood.getName() );
 
 					// Ask how much food to use
-					lPlayerChoiceInt = Game.askForValidNumber( getName() + ", hur mycket foder vill du ge din " + lChosenAnimal.getKindStr() + "(" + lChosenAnimal.getName() + ")?", 0, lChosenFood.getQuantity() );
+					float lPlayerChoiceFloat = Game.askForValidFloat( getName() + ", hur mycket foder vill du ge din " + lChosenAnimal.getKindStr() + "(" + lChosenAnimal.getName() + ")?", 0, lChosenFood.getQuantity() );
 
 					// Feed the animal
-					lChosenAnimal.tryEat( lChosenFood, lPlayerChoiceInt );
+					lChosenAnimal.tryEat( lChosenFood, lPlayerChoiceFloat );
 
 					if ( lChosenFood.getQuantity() <= 0 ) mFoods.remove( lChosenFood );
 
