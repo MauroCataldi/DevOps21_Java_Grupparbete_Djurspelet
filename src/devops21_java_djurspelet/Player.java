@@ -45,7 +45,7 @@ public class Player
 
 
 	/**
-	 * Makes the actual movement of an animal to this player's list of awned animals
+	 * Makes the actual movement of an animal to this player's list of owned animals
 	 * Reduces the credits balance of this player by the cost of the animal
 	 *
 	 * @param pAnimal animal to purchase
