@@ -2,7 +2,7 @@ package devops21_java_djurspelet;
 
 public class Carrots extends FoodBase
 {
-	protected static final int PRICE = 20;
+	protected static final float PRICE = 20.0f;
 	protected static final String NAME = "Morötter";
 
 
@@ -11,7 +11,7 @@ public class Carrots extends FoodBase
 	*
 	* @param pQuantity  Quantity of food held (whole kilograms)
 	*/
-	public Carrots( int pQuantity )
+	public Carrots( float pQuantity )
 	{
 		super( NAME, FoodKind.CARROTS, PRICE, pQuantity );
 	}
@@ -23,7 +23,7 @@ public class Carrots extends FoodBase
 	*
 	* @author  P.S.
 	*/
-	public FoodBase createNewWithQuantity( int pQuantity )
+	public FoodBase createNewWithQuantity( float pQuantity )
 	{
 		return new Carrots( pQuantity );
 	}

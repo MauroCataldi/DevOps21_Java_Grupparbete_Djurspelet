@@ -9,7 +9,7 @@ public abstract class AnimalBase // Enforce creation of subclasses
 	private String mName;
 	private AnimalKind mKind;
 	private AnimalGender mGender;     // AnimalGender.MALE or AnimalGenderFEMALE
-	protected int mPriceAtMaxHealth;  // Initial price at 100%
+	protected float mPriceAtMaxHealth;  // Initial price at 100%
 	private float mHealth;            // Current health
 	private float mLastHealth;        // For compute deltas
 	private int mAge;
@@ -29,7 +29,7 @@ public abstract class AnimalBase // Enforce creation of subclasses
 	*
 	* @author P.S.
 	*/
-	protected AnimalBase( AnimalKind pKind, int pPriceAtMaxHealth, int pExpectedLifeLength, float pFoodQuantityHealthReq )
+	protected AnimalBase( AnimalKind pKind, float pPriceAtMaxHealth, int pExpectedLifeLength, float pFoodQuantityHealthReq )
 	{
 		this.mName = "Namnlös";
 		this.mKind = pKind;
@@ -243,11 +243,11 @@ public abstract class AnimalBase // Enforce creation of subclasses
 	*
 	* @author P.S
 	*/
-	public boolean tryEat( FoodBase pWhichFoodBucket, int pQuantity )
+	public boolean tryEat( FoodBase pWhichFoodBucket, float pQuantity )
 	{
 		if ( this.canEatThis( pWhichFoodBucket ) )
 		{
-			int lDiff = pWhichFoodBucket.getQuantity() - pQuantity;
+			float lDiff = pWhichFoodBucket.getQuantity() - pQuantity;
 			if ( lDiff < 0 ) pQuantity += lDiff;
 
 			pWhichFoodBucket.removeQuantity( pQuantity );
