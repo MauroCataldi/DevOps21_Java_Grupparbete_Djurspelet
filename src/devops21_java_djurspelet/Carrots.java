@@ -21,7 +21,6 @@ public class Carrots extends FoodBase
 	* Create a new separate instance of same class
 	* @return  New object with specified quantity
 	*
-	* @author  P.S.
 	*/
 	public FoodBase createNewWithQuantity( float pQuantity )
 	{

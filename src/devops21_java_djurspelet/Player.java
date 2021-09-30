@@ -14,8 +14,6 @@ public class Player
 	public ArrayList<FoodBase> mFoods;
 
 
-
-
 	/**
 	* Creates a player with a certain name
 	*
@@ -64,33 +62,6 @@ public class Player
 		{
 			System.out.println( "Du har inte råd!" );
 		}
-
-//		boolean lLoop = true;
-//		while ( lLoop )
-//		{
-//			int animalAmount = Game.askForValidNumber( "Välj hur många djur du vill köpa: ", 1, 1000 );
-//			if ( mCredits >= pAnimal.getPrice() * animalAmount )
-//			{
-//				mCredits -= pAnimal.getPrice() * animalAmount;
-//				for ( int i = 0; i < animalAmount; i++ )
-//				{
-//					mAnimals.add( pAnimal.createChild() );
-//					mAnimals.get( mAnimals.size() - 1 ).setName( Game.askForValidName( "Döp ditt djur!" ) );
-//				}
-//				lLoop = false;
-//			}
-//			else
-//			{
-//				System.out.println( "Du har inte råd!" );
-//				switch ( Game.askForValidChar( "Avbryt köp?", "jn" ) )
-//				{
-//					case "J":
-//						lLoop = false;
-//						break;
-//					case "N":
-//				}
-//			}
-//		}
 	}
 
 
@@ -106,6 +77,9 @@ public class Player
 	}
 
 
+	/**
+	 * Loops through the animal list and sells off all the animals
+	 */
 	public void sellAll()
 	{
 		Iterator<AnimalBase> i = this.mAnimals.iterator();
@@ -130,7 +104,7 @@ public class Player
 		// Has this player enough credits
 		if ( this.mCredits >= pFood.getPriceTotal() )
 		{
-			// Decreas the credits by the price of the animal
+			// Decrease the credits by the price of the animal
 			this.mCredits -= pFood.getPriceTotal();
 
 			// Search for existing right food
@@ -155,47 +129,6 @@ public class Player
 				// Found, add quantity to existing
 				this.mFoods.get( lFoundFoodIndex ).setQuantity( this.mFoods.get( lFoundFoodIndex ).getQuantity() + pFood.getQuantity() );
 			}
-
-//		if ( pFood.getQuantity() != 0 )
-//		{
-//			System.out.println( "Hur mycket " + pFood.getName() + " Vill du köpa?" );
-//			int lQuantity = Game.askForValidNumber( "Ange kg: ", 1, 10000 );
-//			if ( lQuantity <= pFood.getQuantity() )
-//			{
-//				System.out.println( "Det kommer kosta: " + ( lQuantity * pFood.getPrice() ) + " Credits" );
-//				if ( Game.askForValidChar( "Är du säker? j/n", "jn" ).equalsIgnoreCase( "j" ) )
-//				{
-//					if ( mCredits > lQuantity * pFood.getPrice() )
-//					{
-//                    /*
-//                      adds obj food into list if not present and sets quantity to amount bought
-//                      else adds quantity bought onto existing obj in list
-//                     */
-//						if ( !mFoods.contains( pFood ) )
-//						{
-//							mFoods.add( pFood );
-//							int temp = mFoods.indexOf( pFood );
-//							mFoods.get( temp ).setQuantity( lQuantity );
-//							//pFood.removeQuantity(lQuantity); unintended effect
-//						} else
-//						{
-//							int temp = mFoods.indexOf( pFood );
-//							mFoods.get( temp ).addQuantity( lQuantity );
-//							pFood.removeQuantity( lQuantity );
-//						}
-//					} else
-//					{
-//						System.out.println( "Du har inte råd!" );
-//					}
-//				} else
-//				{
-//					System.out.println( "För dyrt för dig?" );
-//				}
-//			}
-//		} else
-//		{
-//			System.out.println( "Det finns ingen mat att köpa!" );
-//		}
 		}
 		else
 			System.out.println( "Du har inte råd!" );
@@ -218,9 +151,9 @@ public class Player
 
 
 	/**
-	 * Prints out list of animals in a vertical format
-	 * includes index animal is at
-	 */
+	* Prints out list of animals, line by line
+	* includes index animal is at
+	*/
 	public void printLivestock()
 	{
 		System.out.println();
@@ -243,6 +176,7 @@ public class Player
 					lPriceLength = Integer.toString( a.getPrice() ).length();
 			}
 
+			// Write to screen a nicely formatted list of animals
 			for ( int i = 0; i < this.mAnimals.size(); i++ )
 			{
 				AnimalBase a = this.mAnimals.get( i );
@@ -253,6 +187,11 @@ public class Player
 	}
 
 
+	/**
+	* Writes to screen a list of animals in the specified list, line by line
+	*
+	* @param pWhichAnimalList  An ArrayList holding the animals
+	*/
 	public void printLivestockInList( ArrayList<AnimalBase> pWhichAnimalList )
 	{
 		if ( pWhichAnimalList.isEmpty() ) System.out.println( "I listan finns inga djur." );
@@ -274,7 +213,7 @@ public class Player
 					lPriceLength = Integer.toString( a.getPrice() ).length();
 			}
 
-			// Write to screen the list
+			// Write to screen a nicely formatted list of animals
 			for ( int i = 0; i < pWhichAnimalList.size(); i++ )
 			{
 				AnimalBase a = pWhichAnimalList.get( i );
@@ -286,7 +225,7 @@ public class Player
 
 
 	/**
-	 * Prints the food and amount of said food the player holds in their supply
+	 * Prints the food and amount of said food the player holds in their supply, line by line
 	 */
 	public void printFoodOwned()
 	{
@@ -305,6 +244,7 @@ public class Player
 				if ( f.getQuantityStr().length() > lQuantityLength ) lQuantityLength = f.getQuantityStr().length();
 			}
 
+			// Write to screen a nicely formatted list of foods
 			for ( int i = 0; i < this.mFoods.size(); i++ )
 			{
 				FoodBase f = this.mFoods.get( i );
@@ -319,9 +259,10 @@ public class Player
 
 
 	/**
-	* @param pWhichFoodlList  List to show on screen
+	* Writes to screen a list of foods in the specified list, line by line
 	*
-	* @author P.S.
+	* @param pWhichFoodlList  An ArrayList holding the foods
+	*
 	*/
 	public void printFoodInList( ArrayList<FoodBase> pWhichFoodlList )
 	{
@@ -358,7 +299,7 @@ public class Player
 	public void printCredits()
 	{
 		System.out.println();
-		System.out.println( this.mName + " har " + this.mCredits + " Credit(s)" );
+		System.out.println( this.mName + " har " + this.mCredits + " krediter" );
 	}
 
 
@@ -385,7 +326,6 @@ public class Player
 	* Create new animal instance using the keyword new and the right constructor, there are two
 	* Add the newly crated animal to player's list of animals
 	*
-	* @author P.S.
 	*/
 	public void tryAnimalBreeding()
 	{
@@ -471,7 +411,6 @@ public class Player
 	* Let the player select food
 	* Feed the animal
 	*
-	* @author P.S.
 	*/
 	public void tryAnimalFeeding()
 	{

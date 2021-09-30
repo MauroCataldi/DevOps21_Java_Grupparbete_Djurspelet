@@ -17,7 +17,6 @@ public abstract class FoodBase
 	* @param pPrice     In whole SEK
 	* @param pQuantity  Quantity of food held in whole kilograms
 	*
-	* @author P.S.
 	*/
 	public FoodBase( String pName, FoodKind pKind, float pPrice, float pQuantity )
 	{
@@ -32,7 +31,6 @@ public abstract class FoodBase
 	* Create a new separate instance of same class
 	* @return  New object with specified quantity
 	*
-	* @author  P.S.
 	*/
 	public abstract FoodBase createNewWithQuantity( float pQuantity );
 

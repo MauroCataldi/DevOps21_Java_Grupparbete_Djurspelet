@@ -13,7 +13,6 @@ public class Dog extends AnimalBase
 	/**
 	* Initializes this object
 	*
-	* @author P.S.
 	*/
 	public Dog()
 	{
@@ -27,7 +26,6 @@ public class Dog extends AnimalBase
 	*
 	* @param pGender  Desired gender of this animal
 	*
-	* @author P.S.
 	*/
 	public Dog( AnimalGender pGender )
 	{
@@ -44,7 +42,6 @@ public class Dog extends AnimalBase
 	* @param pOtherAnimal  Which animal for mating
 	* @return              An ArrayList of AnimalBase
 	*
-	* @author P.S.
 	*/
 	public ArrayList<AnimalBase> tryMateWith( AnimalBase pOtherAnimal )
 	{
@@ -81,7 +78,6 @@ public class Dog extends AnimalBase
 	* Create a new separate instance of same class
 	* @return  New animal of same kind but of specified gender
 	*
-	* @author  P.S.
 	*/
 	public AnimalBase createNewWithGender( AnimalGender pWhatGender )
 	{

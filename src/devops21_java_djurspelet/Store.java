@@ -20,7 +20,6 @@ public class Store
 	*
 	* @param pName What is the store called? Is displayed when played enters this store
 	*
-	* @author P.S.
 	*/
 	public Store( String pName )
 	{
@@ -48,7 +47,6 @@ public class Store
 	* @param pGender  Gender of all animals
 	* @param pNum     Count
 	*
-	* @author P.S.
 	*/
 	public void addAnimalsOfSameKind( AnimalKind pKind, AnimalGender pGender, int pNum )
 	{
@@ -77,7 +75,6 @@ public class Store
 	/**
 	 * Greets a player
 	 *
-	 * @author P.S.
 	 */
 	protected void displayGreeting()
 	{
@@ -89,7 +86,6 @@ public class Store
 	* Displays a nicely formated list
 	* Loops through the list av animals available in store
 	*
-	* @author P.S.
 	*/
 	protected void displayAnimalInventory()
 	{
@@ -120,7 +116,6 @@ public class Store
 	* Displays a nicely formated list
 	* Loops through the list av foods available in store
 	*
-	* @author P.S.
 	*/
 	protected void displayFoodInventory()
 	{
@@ -154,7 +149,6 @@ public class Store
 	*
 	* @param pPlayer The player object who enters the store
 	*
-	* @author P.S.
 	*/
 	protected void playerEntersAnimalBuyStore( Player pPlayer )
 	{
@@ -222,7 +216,6 @@ public class Store
 	*
 	* @param pPlayer The player object who enters the store
 	*
-	* @author P.S.
 	*/
 	protected void playerEntersFoodStore( Player pPlayer )
 	{
@@ -286,7 +279,6 @@ public class Store
 	* Show a message and wait for a valid input
 	* Calls a method that does the actual movement of data
 	*
-	* @author P.S.
 	*/
 	protected void playerEntersAnimalSellStore( Player pPlayer )
 	{
