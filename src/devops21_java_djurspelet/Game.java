@@ -24,7 +24,6 @@ public class Game
 	* Calls method where main loop runs
 	* Calls method where players' holdings are compared and a winner is chosen
 	*
-	* @author P.S.
 	*/
 	Game()
 	{
@@ -48,13 +47,12 @@ public class Game
 	* Asks for number of rounds to play.
 	* Asks for number of players in this game.
 	*
-	* @author P.S.
 	*/
 	private void setupGame()
 	{
-		//setupRealGame(); // Ask questions to setup the game, Important in the game when not testing
+		setupRealGame(); // Ask questions to setup the game, Important in the game when not testing
 
-		setupTestGame(); // For testing only, to generate data
+		//setupTestGame(); // For testing only, to generate data
 	}
 
 
@@ -87,14 +85,13 @@ public class Game
 		mRoundsStillToRun = mNumOfRoundsRequested;
 		mPlayers.add( new Player( "Åsa" ) );
 		mPlayers.get( 0 ).mAnimals.add( new Cat( AnimalGender.MALE ) );
-		mPlayers.get( 0 ).mAnimals.add( new Cat( AnimalGender.FEMALE ) );
+		mPlayers.get( 0 ).mAnimals.add( new Rabbit( AnimalGender.FEMALE ) );
 		mPlayers.get( 0 ).mAnimals.add( new Horse() );
 		mPlayers.get( 0 ).mFoods.add( new CatFood( 50 ) );
 		mPlayers.get( 0 ).mFoods.add( new Forage( 500 ) );
-		mPlayers.add( new Player( "Östen", 25000 ) );
+		mPlayers.add( new Player( "Östen", 50000 ) );
 		mPlayers.get( 1 ).mFoods.add( new Forage( 500 ) );
-//		mPlayers.get( 1 ).mAnimals.add( new Dog() );
-//		mPlayers.get( 1 ).mAnimals.add( new Rabbit( AnimalGender.MALE ) );
+		mPlayers.get( 1 ).mAnimals.add( new Dog() );
 //		mPlayers.get( 1 ).mAnimals.add( new Rabbit( AnimalGender.FEMALE ) );
 //		mPlayers.get( 1 ).mFoods.add( new DogFood( 10 ) );
 //		mPlayers.get( 1 ).mFoods.add( new Carrots( 10 ) );
@@ -116,7 +113,6 @@ public class Game
 	* @param pValidChars  List of valid chars as a plain string
 	* @return             The character entered
 	*
-	* @author P.S.
 	*/
 	protected static String askForValidChar( String pMsg, String pValidChars )
 	{
@@ -160,7 +156,6 @@ public class Game
 	* @param pMsg Message shown on th screen
 	* @return Validated string
 	*
-	* @author P.S.
 	*/
 	protected static String askForValidName( String pMsg )
 	{
@@ -199,13 +194,12 @@ public class Game
 	* @param pValidMax  Upper limit
 	* @return           A value between pValidMin and pValidMax, inclusive
 	*
-	* @author P.S.
 	*/
 	public static int askForValidNumber( String pMsg, int pValidMin, int pValidMax )
 	{
-		boolean lIsValid = false; // Not yet!
+		boolean lIsValid = false; // Not yet
 		Scanner lScanner = new Scanner( System.in );
-		int lParsedInt = pValidMin - 1;
+		int lInputInt = pValidMin - 1;
 
 		if ( pValidMax < pValidMin ) pValidMax = pValidMin;
 
@@ -214,30 +208,24 @@ public class Game
 			// Print to screen the message and a valid intervall
 			System.out.print( "\n" + pMsg + " Ange ett tal mellan " + pValidMin + " och " + pValidMax + ": " );
 
-			// Get input from user
-			String lInputStr = lScanner.nextLine();
-			String lRegExStr = "/[-0-9]+/";
-
-			// Validate input with regular expression
-			lIsValid = lInputStr.matches( lRegExStr );
-
 			try
 			{
-				lParsedInt = Integer.parseInt( lInputStr );
+				// Get input from user
+				lInputInt = lScanner.nextInt();
 				lIsValid = true;
 			}
 			catch ( Exception ignored )
 			{}
 
 			// Check if input is valid
-			if ( lParsedInt < pValidMin || lParsedInt > pValidMax )
+			if ( lInputInt < pValidMin || lInputInt > pValidMax )
 			{
 				System.out.println( "Värdet du har angett ligger inte inom intervallet." );
 				lIsValid = false;
 			}
 		}
 
-		return lParsedInt;
+		return lInputInt;
 	}
 
 
@@ -251,7 +239,6 @@ public class Game
 	* @param pValidMax  Upper limit
 	* @return           A value between pValidMin and pValidMax, inclusive
 	*
-	* @author P.S.
 	*/
 	public static float askForValidFloat( String pMsg, float pValidMin, float pValidMax )
 	{
@@ -293,7 +280,6 @@ public class Game
 	* @param pMsg Message shown on th screen
 	* @return Validated string
 	*
-	* @author P.S.
 	*/
 	protected static int askForValidChoiceWithDesc( String pMsg, String[] pPlayerChoiceDesc )
 	{
@@ -315,7 +301,6 @@ public class Game
 	* Until number of players still in this game is 1
 	* or all of this game rounds has been run
 	*
-	* @author P.S.
 	*/
 	private void runMainGameLoop()
 	{
@@ -335,7 +320,6 @@ public class Game
 	/**
 	* Runs one game round
 	*
-	* @author P.S.
 	*/
 	private void runOneRound()
 	{
@@ -432,17 +416,13 @@ public class Game
 
 			} // Player's turn loop end
 		}
-
 		// Only one player remaining
-
-		//System.out.println( "\nFor testing only: Game round step ended." );
 	}
 
 
 	/**
 	* Find the winner
 	*
-	* @author P.S.
 	*/
 	private void endGameLogic()
 	{
