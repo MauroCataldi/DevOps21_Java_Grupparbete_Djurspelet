@@ -14,6 +14,13 @@ public class Player
 	public ArrayList<FoodBase> mFoods;
 
 
+
+
+	/**
+	* Creates a player with a certain name
+	*
+	* @param name  What name
+	*/
 	Player( String name )
 	{
 		this.mName = name;
@@ -23,9 +30,15 @@ public class Player
 	}
 
 
+	/**
+	* Creates a player with a certain name and certain credit balance
+	*
+	* @param name        What name
+	* @param pNumCredits The amount of credits
+	*/
 	Player( String name, int pNumCredits ) throws IllegalArgumentException
 	{
-		if ( pNumCredits <= 0 ) throw new IllegalArgumentException();
+		if ( pNumCredits < 0 ) throw new IllegalArgumentException(); // Not let a player with balance blow 0 be created
 		this.mName = name;
 		this.mCredits = pNumCredits;
 		this.mAnimals = new ArrayList<>();
@@ -472,6 +485,7 @@ public class Player
 
 			do
 			{
+				// Show what a player owns
 				this.printLivestock();
 				this.printFoodOwned();
 
@@ -515,6 +529,7 @@ public class Player
 
 					if ( lChosenFood.getQuantity() <= 0 ) mFoods.remove( lChosenFood );
 
+					// Show what a player owns
 					this.printLivestock();
 
 					// Ask if the player wants to feed another animal
