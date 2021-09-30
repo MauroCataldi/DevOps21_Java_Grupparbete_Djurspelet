@@ -4,9 +4,9 @@ public abstract class FoodBase
 {
 	protected String mName;
 	protected FoodKind mKind;
-	private int mPrice;
-	private int mQuantity;
-	int eatFood;
+	private float mPrice;
+	private float mQuantity;
+	//int eatFood;
 
 
 	/**
@@ -19,7 +19,7 @@ public abstract class FoodBase
 	*
 	* @author P.S.
 	*/
-	public FoodBase( String pName, FoodKind pKind, int pPrice, int pQuantity )
+	public FoodBase( String pName, FoodKind pKind, float pPrice, float pQuantity )
 	{
 		this.mName = pName;
 		this.mKind = pKind;
@@ -34,15 +34,18 @@ public abstract class FoodBase
 	*
 	* @author  P.S.
 	*/
-	public abstract FoodBase createNewWithQuantity( int pQuantity );
+	public abstract FoodBase createNewWithQuantity( float pQuantity );
 
 	public String getName() { return this.mName; }
 	public FoodKind getKind() { return this.mKind; }
-	public int getPrice() { return this.mPrice; }
-	public int getPriceTotal() { return this.mPrice * this.getQuantity(); }
+	public float getPrice() { return this.mPrice; }
+	public String getPriceStr() { return String.format( "%.2f", this.mPrice ); }
+	public float getPriceTotal() { return this.mPrice * this.getQuantity(); }
+	public String getPriceTotalStr() { return String.format( "%.2f", this.mPrice * this.getQuantity() ); }
 
-	public void addQuantity( int pQuantity ) { this.mQuantity += pQuantity; }
-	public void removeQuantity( int pQuantity ) { this.mQuantity -= pQuantity; }
-	public void setQuantity( int pQuantity ) { this.mQuantity = pQuantity; }
-	public int getQuantity() { return this.mQuantity; }
+	public void addQuantity( float pQuantity ) { this.mQuantity += pQuantity; }
+	public void removeQuantity( float pQuantity ) { this.mQuantity -= pQuantity; }
+	public void setQuantity( float pQuantity ) { this.mQuantity = pQuantity; }
+	public float getQuantity() { return this.mQuantity; }
+	public String getQuantityStr() { return String.format( "%.2f", this.mQuantity ); }
 }

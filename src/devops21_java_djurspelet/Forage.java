@@ -2,7 +2,7 @@ package devops21_java_djurspelet;
 
 public class Forage extends FoodBase
 {
-	protected static final int PRICE = 20;
+	protected static final float PRICE = 20.0f;
 	protected static final String NAME = "Grovfoder";
 
 
@@ -11,7 +11,7 @@ public class Forage extends FoodBase
 	*
 	* @param pQuantity  Quantity of food held in whole kilograms
 	*/
-	public Forage( int pQuantity )
+	public Forage( float pQuantity )
 	{
 		super( NAME, FoodKind.FORAGE, PRICE, pQuantity );
 	}
@@ -23,7 +23,7 @@ public class Forage extends FoodBase
 	*
 	* @author  P.S.
 	*/
-	public FoodBase createNewWithQuantity( int pQuantity )
+	public FoodBase createNewWithQuantity( float pQuantity )
 	{
 		return new Forage( pQuantity );
 	}

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 */
 public class Store
 {
-	static final int ATSTART_QUANTITY_PER_FOOD = 2000; // in kilograms
+	static final float ATSTART_QUANTITY_PER_FOOD = 2000.0f; // in kilograms
 
 	String mName;                          // Initialized in the constructor
 	public ArrayList<AnimalBase> mAnimals; // Sellable to players
@@ -134,14 +134,13 @@ public class Store
 			FoodBase f = this.mFoods.get( i );
 			if ( Integer.toString( i ).length() > lNumLength ) lNumLength = Integer.toString( i ).length();
 			if ( f.getName().length() > lNameLength ) lNameLength = f.getName().length();
-			if ( Integer.toString( f.getPrice() ).length() > lPriceLength )
-				lPriceLength = Integer.toString( f.getPrice() ).length();
+			if ( f.getPriceStr().length() > lPriceLength ) lPriceLength = f.getPriceStr().length();
 		}
 
 		for ( int i = 0; i < this.mFoods.size(); i++ )
 		{
 			FoodBase f = this.mFoods.get( i );
-			String lStr = String.format( "%" + lNumLength + "d  namn: %-" + lNameLength + "s   pris: %" + lPriceLength + "d kr/kg", i, f.getName(), f.getPrice() );
+			String lStr = String.format( "%" + lNumLength + "d  namn: %-" + lNameLength + "s   pris: %" + lPriceLength + "s kr/kg", i, f.getName(), f.getPriceStr() );
 			System.out.println( lStr );
 		}
 	}
@@ -253,7 +252,7 @@ public class Store
 				lPlayerChoiceInt = Game.askForValidNumber( "Vad vill du köpa?", 0, this.mFoods.size() - 1 );
 				FoodBase lChosenFood = this.mFoods.get( lPlayerChoiceInt );
 
-				lPlayerChoiceInt = Game.askForValidNumber( pPlayer.getName() + ", hur mycket foder vill du köpa?", 0, lChosenFood.getQuantity() );
+				lPlayerChoiceInt = Game.askForValidNumber( pPlayer.getName() + ", hur mycket foder vill du köpa?", 0, (int)lChosenFood.getQuantity() );
 
 				FoodBase lNewFood = lChosenFood.createNewWithQuantity( lPlayerChoiceInt );
 
@@ -311,6 +310,10 @@ public class Store
 
 				// Do the actual sale
 				pPlayer.sellAnimal( lChosenAnimal );
+
+				// Show what's changed
+				pPlayer.printCredits();
+				pPlayer.printLivestock();
 
 				if ( Game.askForValidChar( "Vill du sälja fler djur?", "jn" ).equals( "N" ) )
 				{
