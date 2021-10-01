@@ -208,10 +208,11 @@ public class Game
 			// Print to screen the message and a valid intervall
 			System.out.print( "\n" + pMsg + " Ange ett tal mellan " + pValidMin + " och " + pValidMax + ": " );
 
+			String temp = lScanner.nextLine();
 			try
 			{
 				// Get input from user
-				lInputInt = lScanner.nextInt();
+				lInputInt = Integer.parseInt(temp);
 				lIsValid = true;
 			}
 			catch ( Exception ignored )
